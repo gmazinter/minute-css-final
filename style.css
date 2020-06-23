@@ -35,6 +35,10 @@ body {
 }
 
 .video-wrapper.current {
+	z-index: 10;
+}
+
+.video-wrapper.incoming {
 	animation-name: growIn;
 	animation-duration: 800ms;
 	z-index: 10;

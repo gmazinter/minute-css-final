@@ -34,7 +34,8 @@ const VideoSlide = function () {
 			'current',
 			`animated-${direction}`
 		);
-		next.className = `${next.className} current`;
+		current.className = current.className.replace('incoming', '');
+		next.className = `${next.className} current incoming`;
 	};
 
 	return {
