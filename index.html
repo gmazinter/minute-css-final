@@ -5,6 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Guy CSS test</title>
 		<link href="style.css" rel="stylesheet" type="text/css" />
+		<script
+			src="https://kit.fontawesome.com/efc1077bac.js"
+			crossorigin="anonymous"
+		></script>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
@@ -16,12 +20,16 @@
 				<div
 					class="control-arrow-wrapper prev-arrow-wrapper prev-control"
 				>
-					<div class="prev-arrow"><</div>
+					<div class="prev-arrow">
+						<i class="fas fa-chevron-left"></i>
+					</div>
 				</div>
 				<div
 					class="control-arrow-wrapper next-arrow-wrapper next-control"
 				>
-					<div class="next-arrow">></div>
+					<div class="next-arrow">
+						<i class="fas fa-chevron-right"></i>
+					</div>
 				</div>
 				<!-- <div id="video-deck"> -->
 				<div class="video-wrapper current" data-index="0">
@@ -55,8 +63,12 @@
 				<!-- </div> -->
 			</div>
 			<div id="control-panel">
-				<button class="control-button prev-control">previous</button>
-				<button class="control-button next-control">next</button>
+				<button class="control-button prev-control">
+					scale / move left
+				</button>
+				<button class="control-button next-control">
+					scale / move right
+				</button>
 			</div>
 		</div>
 		<script src="index.js"></script>

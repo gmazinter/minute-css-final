@@ -21,9 +21,9 @@ body {
 	width: 90vw;
 	height: 53vw;
 	position: relative;
+	margin-bottom: 16px;
 	/* background-color: yellow; */
-	/* overflow-x: hidden; */
-	/* overflow-y: visible; */
+	overflow: hidden;
 }
 
 .video-wrapper {
@@ -33,7 +33,18 @@ body {
 }
 
 .video-wrapper.current {
+	animation-name: growIn;
+	animation-duration: 800ms;
 	z-index: 10;
+}
+
+@keyframes growIn {
+	0% {
+		transform: scale(0.6, 0.6);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
 }
 
 .video-element {
@@ -87,12 +98,14 @@ body {
 	animation-duration: 300ms;
 	animation-iteration-count: 2;
 	animation-direction: alternate;
+	cursor: pointer;
 }
 .prev-arrow:hover {
 	animation-name: arrowWiggle;
 	animation-duration: 300ms;
 	animation-iteration-count: 2;
 	animation-direction: alternate;
+	cursor: pointer;
 }
 
 @keyframes arrowWiggle {
@@ -109,6 +122,17 @@ body {
 
 .control-button {
 	min-width: 80px;
+	height: 30px;
+	text-transform: capitalize;
+	margin: 0 8px;
+	border: none;
+	outline: none;
+}
+
+.control-button:hover {
+	cursor: pointer;
+	background-color: black;
+	color: white;
 }
 
 .sub-header {
@@ -146,24 +170,28 @@ body {
 
 .current .sub-header-number {
 	animation-name: expandUpNumber;
-	animation-duration: 1s;
+	animation-duration: 5s;
 	animation-delay: 1s;
 	animation-fill-mode: forwards;
+	animation-iteration-count: 2;
+	animation-direction: alternate;
 }
 
 .current .sub-header-text {
 	animation-name: expandRightText;
-	animation-duration: 1s;
+	animation-duration: 4s;
 	animation-delay: 2s;
+	animation-iteration-count: 2;
+	animation-direction: alternate;
 	animation-fill-mode: forwards;
 }
 
 @keyframes expandRightText {
-	from {
+	0% {
 		transform: scaleX(0);
 		transform-origin: left;
 	}
-	to {
+	10% {
 		transform-origin: left;
 		transform: scaleX(1);
 		visibility: visible;
@@ -174,17 +202,20 @@ body {
 		transform-origin: bottom;
 		transform: scaleY(0);
 	}
-	50% {
+	10% {
 		color: transparent;
+		transform-origin: bottom;
+		transform: scaleY(1);
+		visibility: visible;
+	}
+	20% {
+		color: white;
 		transform-origin: bottom;
 		transform: scaleY(1);
 		visibility: visible;
 	}
 	100% {
 		color: white;
-		transform-origin: bottom;
-		transform: scaleY(1);
-		visibility: visible;
 	}
 }
 
@@ -231,9 +262,11 @@ body {
 
 .animated-right {
 	animation-name: swipeRight;
-	animation-duration: 2s;
+	animation-duration: 1600ms;
+	animation-timing-function: ease-in-out;
 }
 .animated-left {
 	animation-name: swipeLeft;
-	animation-duration: 2s;
+	animation-duration: 1600ms;
+	animation-timing-function: ease-in-out;
 }
