@@ -4,6 +4,7 @@
 
 body {
 	margin: 0;
+	font-family: 'Heebo', sans-serif;
 }
 
 #app-container {
@@ -20,7 +21,7 @@ body {
 	width: 90vw;
 	height: 53vw;
 	position: relative;
-	background-color: yellow;
+	/* background-color: yellow; */
 	/* overflow-x: hidden; */
 	/* overflow-y: visible; */
 }
@@ -36,7 +37,7 @@ body {
 }
 
 .video-element {
-	border: 3px dashed red;
+	/* border: 3px dashed red; */
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -84,13 +85,13 @@ body {
 .next-arrow:hover {
 	animation-name: arrowWiggle;
 	animation-duration: 300ms;
-	animation-iteration-count: 4;
+	animation-iteration-count: 2;
 	animation-direction: alternate;
 }
 .prev-arrow:hover {
 	animation-name: arrowWiggle;
 	animation-duration: 300ms;
-	animation-iteration-count: 4;
+	animation-iteration-count: 2;
 	animation-direction: alternate;
 }
 
@@ -126,17 +127,65 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-shrink: 0;
-	width: 48px;
-	height: 48px;
-	background-color: lightblue;
+	width: 64px;
+	background-color: #37c4dc;
+	visibility: hidden;
+	font-size: x-large;
+	font-weight: 300;
+	color: transparent;
 }
 
 .sub-header-text {
-	padding-left: 8px;
+	padding: 0 12px;
 	display: flex;
 	align-items: center;
-	background-color: black;
+	background-color: #000000e1;
+	visibility: hidden;
 	flex-grow: 1;
+}
+
+.current .sub-header-number {
+	animation-name: expandUpNumber;
+	animation-duration: 1s;
+	animation-delay: 1s;
+	animation-fill-mode: forwards;
+}
+
+.current .sub-header-text {
+	animation-name: expandRightText;
+	animation-duration: 1s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes expandRightText {
+	from {
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+	to {
+		transform-origin: left;
+		transform: scaleX(1);
+		visibility: visible;
+	}
+}
+@keyframes expandUpNumber {
+	0% {
+		transform-origin: bottom;
+		transform: scaleY(0);
+	}
+	50% {
+		color: transparent;
+		transform-origin: bottom;
+		transform: scaleY(1);
+		visibility: visible;
+	}
+	100% {
+		color: white;
+		transform-origin: bottom;
+		transform: scaleY(1);
+		visibility: visible;
+	}
 }
 
 @keyframes swipeRight {
