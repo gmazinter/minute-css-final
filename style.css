@@ -10,6 +10,10 @@ body {
 	width: 100%;
 	height: 500px;
 	background-color: pink;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 #media-container {
@@ -17,17 +21,18 @@ body {
 	height: 53vw;
 	position: relative;
 	background-color: yellow;
+	/* overflow-x: hidden; */
+	/* overflow-y: visible; */
 }
 
 .video-wrapper {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	visibility: hidden;
 }
 
 .video-wrapper.current {
-	visibility: visible;
+	z-index: 10;
 }
 
 .video-element {
@@ -35,12 +40,11 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: 1;
 }
 
 .control-arrow {
 	position: absolute;
-	z-index: 5;
+	z-index: 15;
 	top: 0;
 	bottom: 0;
 	width: 50%;
@@ -101,4 +105,54 @@ body {
 	align-items: center;
 	background-color: black;
 	flex-grow: 1;
+}
+
+@keyframes swipeRight {
+	0% {
+		left: 0;
+		z-index: 11;
+	}
+	25% {
+		transform: scale(1.2, 1.2);
+	}
+	50% {
+		left: 100%;
+		z-index: 11;
+		transform: scale(1, 1);
+	}
+	51% {
+		z-index: 5;
+	}
+	100% {
+		left: 0;
+	}
+}
+@keyframes swipeLeft {
+	0% {
+		right: 0;
+		z-index: 11;
+	}
+	25% {
+		transform: scale(1.2, 1.2);
+	}
+	50% {
+		right: 100%;
+		z-index: 11;
+		transform: scale(1, 1);
+	}
+	51% {
+		z-index: 5;
+	}
+	100% {
+		right: 0;
+	}
+}
+
+.animated-right {
+	animation-name: swipeRight;
+	animation-duration: 2s;
+}
+.animated-left {
+	animation-name: swipeLeft;
+	animation-duration: 2s;
 }
