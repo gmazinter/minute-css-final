@@ -42,7 +42,7 @@ body {
 	object-fit: cover;
 }
 
-.control-arrow {
+.control-arrow-wrapper {
 	position: absolute;
 	z-index: 15;
 	top: 0;
@@ -50,23 +50,55 @@ body {
 	width: 50%;
 	display: flex;
 	align-items: center;
+	font-size: xx-large;
+	color: white;
 }
 
-.control-arrow:hover {
-	color: red;
-}
-
-.control-arrow:active {
-	color: green;
-}
-
-.prev-arrow {
+.prev-arrow-wrapper {
 	left: 0;
 	justify-content: flex-start;
 }
-.next-arrow {
+.next-arrow-wrapper {
 	justify-content: flex-end;
 	right: 0;
+}
+
+.next-arrow {
+	position: relative;
+	visibility: hidden;
+	padding-right: 10px;
+}
+.prev-arrow {
+	position: relative;
+	visibility: hidden;
+	padding-left: 10px;
+}
+
+.next-arrow-wrapper:hover > .next-arrow {
+	visibility: visible;
+}
+.prev-arrow-wrapper:hover > .prev-arrow {
+	visibility: visible;
+}
+
+.next-arrow:hover {
+	animation-name: arrowWiggle;
+	animation-duration: 300ms;
+	animation-iteration-count: 4;
+	animation-direction: alternate;
+}
+.prev-arrow:hover {
+	animation-name: arrowWiggle;
+	animation-duration: 300ms;
+	animation-iteration-count: 4;
+	animation-direction: alternate;
+}
+
+@keyframes arrowWiggle {
+	to {
+		padding-right: 5px;
+		padding-left: 5px;
+	}
 }
 
 #control-panel {
