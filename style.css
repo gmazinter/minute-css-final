@@ -8,9 +8,9 @@ body {
 }
 
 #app-container {
+	width: 100%;
 	max-width: 960px;
 	padding-top: 40px;
-	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -50,7 +50,6 @@ body {
 }
 
 .video-element {
-	/* border: 3px dashed red; */
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -77,32 +76,23 @@ body {
 	right: 0;
 }
 
-.next-arrow {
+.control-arrow {
 	position: relative;
 	visibility: hidden;
+}
+
+.next-arrow {
 	padding-right: 10px;
 }
 .prev-arrow {
-	position: relative;
-	visibility: hidden;
 	padding-left: 10px;
 }
 
-.next-arrow-wrapper:hover > .next-arrow {
-	visibility: visible;
-}
-.prev-arrow-wrapper:hover > .prev-arrow {
+.control-arrow-wrapper:hover > .control-arrow {
 	visibility: visible;
 }
 
-.next-arrow:hover {
-	animation-name: arrowWiggle;
-	animation-duration: 300ms;
-	animation-iteration-count: 2;
-	animation-direction: alternate;
-	cursor: pointer;
-}
-.prev-arrow:hover {
+.control-arrow:hover {
 	animation-name: arrowWiggle;
 	animation-duration: 300ms;
 	animation-iteration-count: 2;
@@ -123,12 +113,13 @@ body {
 }
 
 .control-button {
-	min-width: 80px;
-	height: 30px;
+	min-width: 140px;
+	height: 40px;
 	text-transform: capitalize;
 	margin: 0 8px;
 	border: none;
 	outline: none;
+	font-size: 14px;
 }
 
 .control-button:hover {
@@ -145,7 +136,6 @@ body {
 	left: 16px;
 	right: 16px;
 	bottom: 16px;
-	font-size: 12px;
 }
 
 .sub-header-number {
@@ -154,6 +144,7 @@ body {
 	align-items: center;
 	flex-shrink: 0;
 	width: 64px;
+	min-height: 50px;
 	background-color: #37c4dc;
 	visibility: hidden;
 	font-size: x-large;
@@ -168,13 +159,14 @@ body {
 	background-color: #000000e1;
 	visibility: hidden;
 	flex-grow: 1;
+	font-size: 12px;
+	line-height: 1.2;
 }
 
 .current .sub-header-number {
 	animation-name: expandUpNumber;
 	animation-duration: 5s;
 	animation-delay: 1s;
-	animation-fill-mode: forwards;
 	animation-iteration-count: 2;
 	animation-direction: alternate;
 }
@@ -185,7 +177,6 @@ body {
 	animation-delay: 2s;
 	animation-iteration-count: 2;
 	animation-direction: alternate;
-	animation-fill-mode: forwards;
 }
 
 @keyframes expandRightText {
@@ -212,13 +203,21 @@ body {
 	}
 	20% {
 		color: white;
-		transform-origin: bottom;
-		transform: scaleY(1);
-		visibility: visible;
 	}
 	100% {
 		color: white;
 	}
+}
+
+.animated-right {
+	animation-name: swipeRight;
+	animation-duration: 1600ms;
+	animation-timing-function: ease-in-out;
+}
+.animated-left {
+	animation-name: swipeLeft;
+	animation-duration: 1600ms;
+	animation-timing-function: ease-in-out;
 }
 
 @keyframes swipeRight {
@@ -262,20 +261,13 @@ body {
 	}
 }
 
-.animated-right {
-	animation-name: swipeRight;
-	animation-duration: 1600ms;
-	animation-timing-function: ease-in-out;
-}
-.animated-left {
-	animation-name: swipeLeft;
-	animation-duration: 1600ms;
-	animation-timing-function: ease-in-out;
-}
-
 @media (min-width: 540px) {
 	#app-container {
 		padding: 40px;
+	}
+
+	.sub-header-text {
+		font-size: 16px;
 	}
 }
 
@@ -283,9 +275,14 @@ body {
 	.sub-header-number {
 		font-size: xx-large;
 		width: 96px;
+		min-height: 75px;
 	}
 
 	.sub-header-text {
+		padding: 0 24px;
 		font-size: 20px;
+	}
+	.control-button {
+		min-width: 180px;
 	}
 }
