@@ -1,8 +1,5 @@
 const VideoSlide = function () {
-	const swipeRight = () => {
-		console.log('swiping right');
-		const current = document.querySelector('.video-wrapper.current');
-		const parent = current.parentElement;
+	const clearPreviouslyAnimated = parent => {
 		const animated =
 			parent.querySelector('.video-wrapper.animated-right') ||
 			parent.querySelector('.video-wrapper.animated-left');
@@ -16,59 +13,40 @@ const VideoSlide = function () {
 				''
 			);
 		}
+	};
+
+	const swipe = direction => {
+		const current = document.querySelector('.video-wrapper.current');
+		const parent = current.parentElement;
+		clearPreviouslyAnimated(parent);
 		const currentIsLast = parent.lastElementChild === current;
-		let next;
-		next = currentIsLast
-			? parent.querySelector('.video-wrapper')
-			: current.nextElementSibling;
+		const currentIsFirst =
+			parent.querySelector('.video-wrapper') === current;
+		const next =
+			direction === 'right'
+				? currentIsLast
+					? parent.querySelector('.video-wrapper')
+					: current.nextElementSibling
+				: currentIsFirst
+				? parent.lastElementChild
+				: current.previousElementSibling;
 		current.className = current.className.replace(
 			'current',
-			'animated-right'
+			`animated-${direction}`
 		);
 		next.className = `${next.className} current`;
 	};
 
-	const swipeLeft = () => {
-		console.log('swiping left');
-		const current = document.querySelector('.video-wrapper.current');
-		const parent = current.parentElement;
-		const animated =
-			parent.querySelector('.video-wrapper.animated-right') ||
-			parent.querySelector('.video-wrapper.animated-left');
-		if (animated) {
-			animated.className = animated.className.replace(
-				'animated-right',
-				''
-			);
-			animated.className = animated.className.replace(
-				'animated-left',
-				''
-			);
-		}
-		let prev;
-		const currentIsFirst =
-			parent.querySelector('.video-wrapper') === current;
-		prev = currentIsFirst
-			? parent.lastElementChild
-			: current.previousElementSibling;
-		current.className = current.className.replace(
-			'current',
-			'animated-left'
-		);
-		prev.className = `${prev.className} current`;
-	};
-
 	return {
-		swipeRight,
-		swipeLeft,
+		swipe,
 	};
 };
 
 const videoSlide = VideoSlide();
 
 document.querySelectorAll('.next-control').forEach(element => {
-	element.addEventListener('click', videoSlide.swipeRight);
+	element.addEventListener('click', () => videoSlide.swipe('right'));
 });
 document.querySelectorAll('.prev-control').forEach(element => {
-	element.addEventListener('click', videoSlide.swipeLeft);
+	element.addEventListener('click', () => videoSlide.swipe('left'));
 });
